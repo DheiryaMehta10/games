@@ -39,7 +39,7 @@ def takecommand():
         audio = r.listen(source)
 
     try:
-        print("reconizing...")
+        print("recognizing...")
         query = r.recognize_google(audio, language='em-in')
         print(f"user said: {query}\n")    
         
@@ -53,8 +53,8 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('ashamehta838@gmail.com', 'asha1123@mehta')
-    server.sendmail('dheiryamehta838@gmail.com', to, content)
+    server.login('', '')
+    server.sendmail('', to, content)
     server.close()
 
 if __name__ == "__main__":
@@ -64,10 +64,10 @@ if __name__ == "__main__":
 
     # logic for executing tasks based on query
     if 'wikipedia' in query:
-        speak('serching wikipedia...')
+        speak('searching wikipedia...')
         query = query.replace("wikipedia","")
         results = wikipedia.summary(query, sentences=2)
-        speak("acording to wikipedia")
+        speak("according to wikipedia")
         print(results)
         speak(results)
 
@@ -90,17 +90,17 @@ if __name__ == "__main__":
         strtime = datetime.datetime.now().strftime("%H:%M:%S")
         speak(f"Sir, the time is {strtime}")
 
-    elif 'open code' in query:
-        codePath = "C:\\Users\\admin\\Documents\\Zapya\Music"
+    elif 'open visual studio code' in query:
+        codePath = ""
         os.startfile(codePath)
 
-    elif 'email to asha' in query:
+    elif 'email to ' in query:
         try:
             speak("what should I say?")
             content = takecommand()
-            to = "ashamehta838@gmail.com"
+            to = ""
             sendEmail(to, content)
             speak("Email has been sent!")
         except Exception as e:
             print(e)
-            speak("Sorry my friend dheirya bhai. I am not able to send this email")       
+            speak("Sorry my friend. I am not able to send this email")       
