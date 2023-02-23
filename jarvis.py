@@ -5,6 +5,8 @@ import wikipedia #pip install wikipedia
 import webbrowser
 import os
 import smtplib
+import pywhatkit as pwk #pip install pywhatkit
+import python_weather #pip install python_weather
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -19,13 +21,13 @@ def speak(audio):
 def wishMe():
     hour = int(datetime.datetime.now().hour)
     if hour>=0 and hour<12:
-        speak("Good Morning!")
+        speak("Happy Morning!")
 
     elif hour>=12 and hour<18:
-        speak("Good Afternoon!")
+        speak("Happy Afternoon!")
 
     else:
-        speak("Good Evening!")
+        speak("Happy Evening!")
 
     speak("I am Jarvis Sir. Please tell me how may I help you")
 
@@ -53,8 +55,8 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('', '')
-    server.sendmail('', to, content)
+    server.login('sender mail id', 'password')
+    server.sendmail('recever email id', to, content)
     server.close()
 
 if __name__ == "__main__":
@@ -91,16 +93,68 @@ if __name__ == "__main__":
         speak(f"Sir, the time is {strtime}")
 
     elif 'open visual studio code' in query:
-        codePath = ""
+        codePath = "file directory"
         os.startfile(codePath)
 
-    elif 'email to ' in query:
+    elif 'email to asha' in query:
         try:
             speak("what should I say?")
             content = takecommand()
-            to = ""
+            to = "sender email"
             sendEmail(to, content)
             speak("Email has been sent!")
         except Exception as e:
             print(e)
-            speak("Sorry my friend. I am not able to send this email")       
+            speak("Sorry my friend. I am not able to send this email")
+
+    elif 'open instagram' in query:
+        webbrowser.open("instagram.com")
+             
+    elif 'open flipkart'in query:
+        webbrowser.open("flipkart.com")
+
+    elif 'open amazon' in query:
+        webbrowser.open("amazon.com")
+
+    elif 'open spotify' in query:
+        webbrowser.open("spotify.com")
+         
+    elif 'open Netflix' in query:
+        webbrowser.open("Netflix.com")
+
+    elif 'open Swiggy' in query:
+        webbrowser.open("Swiggy.com")
+
+    elif 'open zomato' in query:
+        webbrowser.open("Zomato.com")     
+
+    elif 'open Google Map' in query:
+        webbrowser.open("maps.google.com")
+
+    elif 'open Facebook' in query:
+        webbrowser.open("Facebook.com")
+
+    elif 'open Hotstar' in query:
+        webbrowser.open("hotstar.com")
+
+    elif 'open Prime video' in query:
+        webbrowser.open("primevideo.com")
+
+    elif 'open Twitter' in query:
+        webbrowser.open("twitter.com")
+
+    elif 'open Discord' in query:
+        webbrowser.open("discord.com")
+
+    elif 'weather' in query:
+        weather = get(inda)
+        python_weather.weather(c)
+        print("todays weather is{weather}")
+
+try:
+     pwk.sendwhatmsg("+91XXXXXX5980", "Hi, how are you?", 20, 34)
+ 
+     print("Message Sent!")
+ 
+except: 
+     print("Error in sending the message")
